@@ -1,0 +1,128 @@
+name: 实验与性能测试
+description: 记录需要验证的技术假设、对比实验或性能测量
+title: "[Experiment] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        实验 Issue 的目标是让结果可重复、可比较，并能形成明确结论。请在开始前写清假设、指标和成功阈值。
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: 实验模块
+      options:
+        - 底盘与运动控制
+        - 循迹 / 导航
+        - 避障
+        - 视觉 / 目标识别
+        - 救援与物资搬运机构
+        - 传感器
+        - 嵌入式 / 固件
+        - 电源与硬件
+        - 仿真 / 算法
+        - 跨模块或暂不确定
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: 要回答的问题
+      description: 实验结束后希望回答哪个明确问题？
+      placeholder: 例如：将红外传感器安装高度从 15 mm 调整到 25 mm，能否在弯道识别率不下降的前提下降低地面反光导致的误判？
+    validations:
+      required: true
+
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: 假设
+      description: 在实验前写出预期结果及理由，避免只在结果出来后解释。
+    validations:
+      required: true
+
+  - type: textarea
+    id: variables
+    attributes:
+      label: 变量与对照
+      description: 写明自变量、因变量、控制变量和对照方案。
+      placeholder: |
+        - 自变量：传感器安装高度
+        - 因变量：误判率、循迹成功率、单圈时间
+        - 控制变量：同一场地、同一光照、同一速度参数、电池电压范围
+        - 对照：当前默认安装高度
+    validations:
+      required: true
+
+  - type: textarea
+    id: metrics
+    attributes:
+      label: 指标与成功阈值
+      description: 明确如何测量，以及什么结果算成功。
+      placeholder: |
+        - 循迹成功率 >= 95%
+        - 误判次数 <= 1 次 / 10 圈
+        - 平均单圈时间增加不超过 5%
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 实验环境
+      description: 记录硬件、软件版本、场地、光照、电池状态和关键配置。
+      placeholder: |
+        - Controller / MCU:
+        - Firmware / branch / commit:
+        - Sensor / hardware:
+        - Test field / lighting:
+        - Battery voltage range:
+        - Relevant configuration:
+    validations:
+      required: true
+
+  - type: textarea
+    id: procedure
+    attributes:
+      label: 实验步骤
+      description: 写出其他人能够重复执行的操作顺序，并说明重复次数、预热和统计方法。
+      placeholder: |
+        1. 检查机械连接与电池状态
+        2. 使用默认参数完成 10 次测试
+        3. 修改单一变量后重复 10 次
+        4. 记录均值、波动范围和异常情况
+    validations:
+      required: true
+
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: 预期产物
+      description: 列出实验完成后需要上传或链接的内容。
+      placeholder: |
+        - 原始日志
+        - 参数或配置文件
+        - 数据表、图表或视频
+        - 结论摘要
+        - 后续 Issue
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: 实机风险与停止条件
+      description: 说明碰撞、失控、堵转、机构卡死、过热、短路或电池异常等风险，以及什么情况下必须立即停止实验。
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 开始前确认
+      options:
+        - label: 我已明确实验要回答的问题，而不是只写“试试看”。
+          required: true
+        - label: 我已定义指标和成功阈值。
+          required: true
+        - label: 实机实验已考虑断电、急停和人工监护。
+          required: true

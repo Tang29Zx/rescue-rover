@@ -1,0 +1,118 @@
+name: 功能与任务
+description: 提议一个可验收的新功能、改进或重构任务
+title: "[Feature] "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        一个好的功能 Issue 应当说明目标、边界和验收标准，而不只是写“研究一下”或“优化一下”。
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: 所属模块
+      options:
+        - 底盘与运动控制
+        - 循迹 / 导航
+        - 避障
+        - 视觉 / 目标识别
+        - 救援与物资搬运机构
+        - 传感器
+        - 嵌入式 / 固件
+        - 电源与硬件
+        - 仿真 / 算法
+        - Build / CI
+        - Documentation
+        - 跨模块或暂不确定
+    validations:
+      required: true
+
+  - type: textarea
+    id: background
+    attributes:
+      label: 背景与价值
+      description: 当前有什么问题？完成后会给比赛任务、调试效率或系统可靠性带来什么变化？
+      placeholder: 例如：当前小车无法记录每轮测试的传感器数据，故障难以复现和比较。
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: 目标
+      description: 用一句到几句话说明最终要实现的结果。
+      placeholder: 例如：支持统一记录关键传感器、控制输出和任务状态，并可导出为日志文件。
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: 范围与非目标
+      description: 明确本任务包含什么、不包含什么，避免需求不断扩大。
+      placeholder: |
+        包含：数据采集、时间戳、日志保存、错误提示。
+        不包含：云端同步、可视化分析平台。
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 验收标准
+      description: 使用可勾选、可测试的条件定义“完成”。
+      placeholder: |
+        - [ ] 可以记录指定传感器和控制数据
+        - [ ] 日志包含时间戳和软件版本
+        - [ ] 连续运行 30 分钟不丢失关键数据
+        - [ ] 已在实车上完成一次验证
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 建议实现方案
+      description: 可选。说明接口、数据流、涉及文件或技术方案；不要把未经确认的方案写成硬性要求。
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: 依赖与阻塞项
+      description: 列出前置 Issue、外部硬件、场地、数据、权限或尚未确定的接口。
+      placeholder: 例如：依赖 #12 完成传感器接口定义。
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: 风险与兼容性
+      description: 说明对现有控制逻辑、实时性、功耗、重量、机械结构或比赛规则的潜在影响。
+
+  - type: dropdown
+    id: validation
+    attributes:
+      label: 预计验证方式
+      options:
+        - 纯软件单元测试 / CI
+        - PC 或仿真环境验证
+        - 台架验证
+        - 单模块实车验证
+        - 完整赛道联调
+        - 需要多种验证方式
+        - 暂不确定
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我已搜索现有 Issue，未发现重复任务。
+          required: true
+        - label: 该任务有明确、可验证的验收标准。
+          required: true
+        - label: 如果任务预计超过 2 天，我已考虑将其拆成父 Issue 和多个子 Issue。
+          required: true
