@@ -1,0 +1,109 @@
+name: Bug 报告
+description: 报告可复现的故障、异常行为或回归问题
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。请尽量提供可复现步骤、环境信息和完整日志；不要在 Issue 中粘贴密码、Token、私钥等敏感信息。
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: 影响模块
+      description: 选择最主要的受影响模块。
+      options:
+        - 底盘与运动控制
+        - 循迹 / 导航
+        - 避障
+        - 视觉 / 目标识别
+        - 救援与物资搬运机构
+        - 传感器
+        - 嵌入式 / 固件
+        - 电源与硬件
+        - 仿真 / 算法
+        - Build / CI
+        - Documentation
+        - 跨模块或暂不确定
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: 问题概述
+      description: 用几句话说明发生了什么，以及它为什么是问题。
+      placeholder: 例如：小车检测到障碍物后停止，但障碍物移除后无法继续运行。
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 从干净环境开始，按顺序写出可以稳定复现问题的步骤。
+      placeholder: |
+        1. 上电并启动 ...
+        2. 将小车放置在 ...
+        3. 执行 ...
+        4. 观察到 ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期行为
+      description: 正常情况下应该发生什么？
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为
+      description: 实际发生了什么？请说明是否稳定复现、是否会自行恢复。
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 运行环境
+      description: 填写与问题有关的软硬件版本和测试场景。
+      placeholder: |
+        - Controller / MCU:
+        - OS / toolchain:
+        - Firmware / branch / commit:
+        - Sensor / hardware:
+        - Power supply:
+        - Test field / scene:
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志、截图或最小复现
+      description: 粘贴关键日志，或提供截图、录屏、最小复现代码。请使用代码块包裹日志。
+      render: shell
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: 影响与风险
+      description: 说明是否阻塞开发、影响比赛或演示，以及是否可能造成碰撞、失控、机构损坏或电气风险。
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我已搜索现有 Issue，未发现重复问题。
+          required: true
+        - label: 我已移除日志中的密码、Token、私钥和其他敏感信息。
+          required: true
+        - label: 如问题可能导致碰撞、失控、机构损坏或电源异常，我已明确标注风险。
+          required: true
